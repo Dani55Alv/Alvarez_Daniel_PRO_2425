@@ -43,6 +43,17 @@ public void setAngitguedad(int angitguedad) {
     this.angitguedad = angitguedad;
 }
 
+ public double calcularSueldo(Profesor profesor){
 
+double sueldoBasico=profesor.basico;
+int nAngitguedad= profesor.angitguedad/5;
+for (int i = 0; i < nAngitguedad; i++) {
+    double sB10 =  (sueldoBasico * 10) / 100;
+     sueldoBasico+= sB10;
+
+}        
+    return sueldoBasico;
+    
+ }
 
 }
