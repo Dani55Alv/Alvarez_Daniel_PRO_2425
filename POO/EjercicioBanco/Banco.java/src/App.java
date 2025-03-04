@@ -85,6 +85,7 @@ public class App {
 
         bancoFusionado.retirarDinero(bancoFusionado, 2, 5);
 
+
         // Daniel 1 125.45 y Alvaro 2 45
 
         // Si la transferencia es estatico quiere decir que lo hace la clase en este
@@ -97,5 +98,14 @@ public class App {
 
         // C
 
+        //bancoFusionado.retirarDinero(bancoFusionado, 2, 5);
+           bancoFusionado.mostrarDatosBanco(bancoFusionado);
+Scanner sc2 = new Scanner(System.in);
+
+bancoFusionado.transferencia(0,1, 10 );
+
+bancoFusionado.mostrarListacuentaCorreinte();
+//bancoFusionado.getListaCuentaCorriente();
+bancoFusionado.cuentaConMasDineroAmenos();
     }
 }

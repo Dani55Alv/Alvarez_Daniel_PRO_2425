@@ -111,7 +111,7 @@ public class Carrera {
         this.listaMaterias = new ArrayList<>();
 
     }
-
+//Seria en vez de añadir carrera sería añadir materia.
     public void crearColeccionCarreras() {
         System.out.println("Has creado una lista de carreras ");
         this.listaCarreras = new ArrayList<>();
@@ -137,5 +137,6 @@ public class Carrera {
         }
         System.out.println();
 
+        
     }
 }

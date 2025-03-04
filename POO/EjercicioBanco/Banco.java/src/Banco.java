@@ -58,7 +58,8 @@ public class Banco {
             System.out.println("El Iban no existe por lo tanto la cuenta tampoco");
 
         }
-
+        // si fuera con fori el indice se decrementaria después de eliminar con exito la
+        // cuenta.
     }
 
     public String getNombre() {
@@ -96,6 +97,9 @@ public class Banco {
     public void crearCuentaBanco(ArrayList<CuentaCorriente> bancolista, Banco banco, CuentaCorriente cuenta) {
         // A traves del dni del cliente creamos una cuenta bancaria a la lista
         // Cuenta correinte ccl = new Cuentaacorriente();
+
+        // En crear cuenta habria que que meter el cliente e incrementar el indice.
+        // (Como empadronar humano)
         System.out.println(cuenta.getTitular().getDni());
         boolean clienteEncontrado = false;
         for (CuentaCorriente cuentaCorriente : bancolista) {
@@ -115,7 +119,11 @@ public class Banco {
                     + cuenta.getTitular().getNombre());
         }
     }
+    // En crear cuenta habria que que meter el cliente e incrementar el indice.
+    // (Como empadronar humano)
 
+    // Sería a traves de iban y cliente. Es decir el del this y el del que pasamos
+    // por el iban y cliente.
     public void cambiarTitular(CuentaCorriente cuenta1, CuentaCorriente cuenta2) {
 
         System.out.println("La cuenta corriente de " + cuenta1.getTitular().getNombre() + " ahora será de " + cuenta2
@@ -132,6 +140,7 @@ public class Banco {
 
     }
 
+    // No hace falta parametros.
     public void pagoInteres(ArrayList<CuentaCorriente> bancolista, Banco banco) {
         System.out.println("Pagando intereses en el banco " + banco.getNombre() + " con un ratio de interés de "
                 + banco.getRatioInteres());
@@ -160,7 +169,21 @@ public class Banco {
 
         listaFusionada.addAll(bancolista1);
         listaFusionada.addAll(bancolista2);
+        // Fori Manual
+        // MANUAL int totalCuentas= banco1.getlCuetnaCorriente().lenght +
+        // banco2.getlCuentaCorriente().lenght;
+        // CuentaCorriente l[]1 = banco1.getlicuentaCorriente();
+        // CuentaCorriente l[]2 = banco1.getlicuentaCorriente();
 
+        // for (int i=0; i<banco1.getNumCuentasCorrientes();i++){
+        // newBanco .anadirCuentaCorriente(lCuentaCorrienteB1[i]);
+        // }
+        /* Anadir cuenta corriente es una aparte que anade cuenta corrientes */
+        // for (int i=0; i<banco2.getNumCuentasCorrientes();i++){
+        // newBanco.anadirCuentaCorriente(lCuentaCorrienteB2[i]);
+        // }
+        // return newbanco; (Es decir hay que obtener todos los parametros del banc
+        // fusionado)
         double interesFusionadoMedia = (banco1.getRatioInteres() + banco2.getRatioInteres()) / 2;
 
         Banco bancoFusionado = new Banco(nombre, interesFusionadoMedia, listaFusionada, numeroTrabajadoresF);
@@ -294,25 +317,37 @@ public class Banco {
 
     }
 
-    public void transferencia(long iban1, long iban2, Banco banco) {
+    public void transferencia(long iban1, long iban2, double dineroAEmitir) {
+        Scanner sc = new Scanner(System.in);
 
         boolean iban1Econtrado = false;
         boolean iban2Econtrado = false;
+        String nombreEmisor = " ";
+        String nombreReceptor = " ";
 
         double emisor = 0;
         double receptor = 0;
-        double resultado = 0;
-
+        double resultadoE = 0;
+        double resultadoR = 0;
         for (CuentaCorriente cuentaCorriente : listaCuentaCorriente) {
             if (iban1 == cuentaCorriente.getIban()) {
                 iban1Econtrado = true;
-
+                nombreEmisor = cuentaCorriente.getTitular().getNombre();
                 emisor = cuentaCorriente.getSaldo();
+                System.out.println("Cuanto dinero va a querer el emisor emitir ");
+
+                resultadoE = emisor - dineroAEmitir;
+
+                cuentaCorriente.setSaldo(resultadoE);
 
             }
             if (iban2 == cuentaCorriente.getIban()) {
                 iban2Econtrado = true;
+                nombreReceptor = cuentaCorriente.getTitular().getNombre();
+
                 receptor = cuentaCorriente.getSaldo();
+                resultadoR = receptor + dineroAEmitir;
+                cuentaCorriente.setSaldo(resultadoR);
 
             }
 
@@ -331,12 +366,46 @@ public class Banco {
             System.out.println("se encontro al usuario emisor");
         }
 
-        resultado = emisor + receptor;
-        for (CuentaCorriente cuentaCorriente : listaCuentaCorriente) {
-            if (iban2 == cuentaCorriente.getIban()) {
+        System.out.println("El cliente " + nombreEmisor + " a dado " + dineroAEmitir + " a " + nombreReceptor
+                + " con lo que el cliente " + nombreReceptor + " ahora tiene de saldo: " + resultadoR
+                + " y el emisor tiene " + resultadoE);
 
-                cuentaCorriente.setSaldo(resultado);
+    }
+
+    public void mostrarListacuentaCorreinte() {
+        // Como seria manual? hacelrlo
+        for (CuentaCorriente cuentaCorriente : listaCuentaCorriente) {
+            System.out.println("Iban: " + cuentaCorriente.getIban() + " Nombre: "
+                    + cuentaCorriente.getTitular().getNombre() + " Saldo:" + cuentaCorriente.getSaldo());
+        }
+    }
+
+    public void cuentaConMasDineroAmenos() {
+        System.out.println("Cuenta corriente con mas a menos dinero");
+        double[] array = new double[listaCuentaCorriente.size()];
+
+        int indice = 0;
+        for (CuentaCorriente cuentas : listaCuentaCorriente) {
+
+            array[indice] = cuentas.getSaldo();
+            indice++;
+
+        }
+
+        double auxb = 0;
+        for (int i = 0; i < array.length; i++) {
+            for (int j = 0; j < array.length - i - 1; j++) {
+                if (array[j] < array[j + 1]) {
+                    auxb = array[j];
+                    array[j] = array[j + 1];
+                    array[j + 1] = auxb;
+                }
             }
+
+        }
+
+        for (int i = 0; i < array.length; i++) {
+            System.out.println("Cuenta corriente " + (i + 1) + " " + +array[i]);
         }
 
     }

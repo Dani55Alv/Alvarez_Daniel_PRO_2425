@@ -1,12 +1,12 @@
 import java.util.ArrayList;
 
 public class Materia {
-    // Materia tiene que tener una lista de alumnos aunque no lo pida explicitamente
-    // el ejercicio;
+
     private String nombre;
     private Profesor titular;
     private ArrayList<Alumno> listaAlumnosInscritosMateria;
-    private ArrayList<Asistencia> listaAsistencias;
+    private ArrayList<Asistencia> listaAsistencias; //=  new  arrlist lista sentencia
+    //"Aqui ya la he declarado asi que no lo pongo en el constructor"
 
     public Materia(String nombre, Profesor titular, ArrayList<Alumno> listaAlumnosInscritosMateria,
             ArrayList<Alumno> listaAlumnosAsisten, ArrayList<Asistencia> listaAsistencias) {
@@ -85,6 +85,8 @@ public class Materia {
     }
 
     public void elimnarAsistencia(Asistencia asistencia) {
+
+        //if lAsistencia contains asistencia //int inde=l Asisnte.indefof(asistencia); //lAsistencia.remove(index))
         System.out.println("Eliminando la asistencia" + asistencia.getFecha() + " a la materia " + getNombre());
         listaAsistencias.remove(asistencia);
     }
@@ -188,3 +190,4 @@ public class Materia {
     }
 
 }
+//System.out.printf("El dia %s , fecha"); s significa string (java printf tipos)
