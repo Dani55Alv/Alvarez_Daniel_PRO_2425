@@ -137,176 +137,214 @@ public class ActividadesLista {
     // La clase con un atributo string y string. Hay que sobrescribir equals y
     // hascode.
 
-    // ejercicio 3 
-    //Dos formas:String o clase palabra con un atributo string.
+    // ejercicio 3
+    // Dos formas:String o clase palabra con un atributo string.
     // 1º forma: Hashset<String>
     // 2º forma: Hashset<Palabra> (Aqui Palabra representa una clase)
-    // Con las segunda forma no borra porque solo mira las direcciones ya que son objetos no strings.
+    // Con las segunda forma no borra porque solo mira las direcciones ya que son
+    // objetos no strings.
     // es decir que hay que sobresscribir el equals y el hascode.
     // Hascode sirve para que no meta duplicados en el hashSet
     // @override
     // to string reutrn palabra.
     // Al hacer add puedes hacer palabra.toLowerCase(); //ENTRA EN EXAMEN
- 
+
     public void ejercicio3() {
         Scanner sc = new Scanner(System.in);
-System.out.println("Introduce texto");
-String texto = sc.nextLine();
-Set<Palabra_Ej3> conjunto = new HashSet<Palabra_Ej3>(); 
+        System.out.println("Introduce texto");
+        String texto = sc.nextLine();
+        Set<Palabra_Ej3> conjunto = new HashSet<Palabra_Ej3>();
 
-String[] palabras = texto.split(" ");
+        String[] palabras = texto.split(" ");
 
-for (String palabra : palabras) {
-    conjunto.add(new Palabra_Ej3(palabra.toLowerCase())); //Asi se añade un nuevo objeto palabra independiente.
-}
+        for (String palabra : palabras) {
+            conjunto.add(new Palabra_Ej3(palabra.toLowerCase())); // Asi se añade un nuevo objeto palabra independiente.
+        }
 
-System.out.println("El numero de palabras unicas son de " + conjunto.size());
+        System.out.println("El numero de palabras unicas son de " + conjunto.size());
 
-      /*
-       * boolean noHayEspacio = true;
-       * 
-       * System.out.
-       * println("Introduce un texto para ver cuanta palabras unicas tiene.");
-       * 
-       * String texto = sc.nextLine().toLowerCase();
-       * 
-       * String palabra = "";
-       * Set<String> conjunto = new HashSet<String>();
-       * 
-       * for (int i = 0; i < texto.length(); i++) {
-       * if (texto.charAt(i) == ' ') {
-       * conjunto.add(palabra);
-       * palabra = "";
-       * noHayEspacio = false;
-       * }
-       * 
-       * else {
-       * palabra += texto.charAt(i);
-       * 
-       * }
-       * 
-       * }
-       * 
-       * if (noHayEspacio) {
-       * conjunto.add(palabra);
-       * }
-       * System.out.println("El numero de palabras unicas son de " + conjunto.size());
-       * }
-       * 
-       * public void ejercicio4() {
-       * Set<String> conjuntoOrdenado = new LinkedHashSet<String>();
-       * Scanner sc = new Scanner(System.in);
-       * boolean salida = true;
-       * do {
-       * System.out.println("Agregar cliente, introduce nombre");
-       * String cliente = sc.nextLine();
-       * conjuntoOrdenado.add(cliente);
-       * for (String nombreCliente : conjuntoOrdenado) {
-       * System.out.print(nombreCliente + " ");
-       * 
-       * }
-       * // System.out.println("Atendiendo actualmente al cliente:" +
-       * conjuntoOrdenado.);
-       * // System.out.println("El ultimos es actualmente al cliente:" +
-       * // conjuntoOrdenado.);
-       * 
-       * System.out.println();
-       * 
-       * System.out.println("Quieres salir?/ si/no");
-       * String usuario = sc.nextLine().toLowerCase();
-       * 
-       * if (usuario.equals("si")) {
-       * System.out.println("Saliendo");
-       * salida = false;
-       * 
-       * } else {
-       * System.out.println("Continuando");
-       * }
-       * } while (salida);
-       * }
-       * 
-       * public void ejercicio5() {
-       * Scanner sc = new Scanner(System.in);
-       * Set<String> conjuntoArbol = new TreeSet<>();
-       * System.out.println("Vamos a hacer un diccionarion ordenado alfabeticamente");
-       * boolean salida = true;
-       * String palabra = "";
-       * do {
-       * 
-       * palabra = sc.nextLine();
-       * conjuntoArbol.add(palabra);
-       * 
-       * System.out.println("Quieres salir?/ si/no");
-       * String usuario = sc.nextLine().toLowerCase();
-       * 
-       * if (usuario.equals("si")) {
-       * System.out.println("Saliendo");
-       * salida = false;
-       * 
-       * } else {
-       * System.out.println("Continuando");
-       * }
-       * } while (salida);
-       * System.out.println("Ordenado alfabeticamente");
-       * for (String palabras : conjuntoArbol) {
-       * System.out.print(palabras + " ");
-       * }
-       * }
-       * 
-       * public void ejercicio6() {
-       * Scanner sc = new Scanner(System.in);
-       * 
-       * HashMap<String, String> mapa = new HashMap<>();
-       * boolean salida = true;
-       * String nombre;
-       * String nTelfono;
-       * do {
-       * 
-       * System.out.println("Introduce nombre");
-       * nombre = sc.nextLine();
-       * 
-       * System.out.println("Introduce numero de telefono");
-       * nTelfono = sc.nextLine();
-       * 
-       * mapa.put(nombre, nTelfono);
-       * 
-       * System.out.println("Quieres salir?/ si/no");
-       * String usuario = sc.nextLine().toLowerCase();
-       * 
-       * if (usuario.equals("si")) {
-       * System.out.println("Saliendo");
-       * salida = false;
-       * 
-       * } else {
-       * System.out.println("Continuando");
-       * }
-       * } while (salida);
-       * 
-       * System.out.println(mapa);
-       * 
-       * boolean noEncontrado = true;
-       * System.out.println("Busqueda introduce nombre ");
-       * String busquedaNombre = sc.nextLine();
-       * for (String nombres : mapa.keySet()) {
-       * 
-       * if (busquedaNombre.equals(nombres)) {
-       * noEncontrado = false;
-       * }
-       * }
-       * if (noEncontrado) {
-       * System.out.println("No se ha encontrado el nombre: " + busquedaNombre);
-       * System.out.println("Mostrando mapa");
-       * System.out.println(mapa);
-       * 
-       * } else {
-       * System.out.println("Se ha encontrado el nombre: " + busquedaNombre);
-       * System.out.println("Su valor respecto a su clave es " +
-       * mapa.get(busquedaNombre));
-       * System.out.println("Mostrando mapa");
-       * System.out.println(mapa);
-       * 
-       * }
-       */
+        /*
+         * boolean noHayEspacio = true;
+         * 
+         * System.out.
+         * println("Introduce un texto para ver cuanta palabras unicas tiene.");
+         * 
+         * String texto = sc.nextLine().toLowerCase();
+         * 
+         * String palabra = "";
+         * Set<String> conjunto = new HashSet<String>();
+         * 
+         * for (int i = 0; i < texto.length(); i++) {
+         * if (texto.charAt(i) == ' ') {
+         * conjunto.add(palabra);
+         * palabra = "";
+         * noHayEspacio = false;
+         * }
+         * 
+         * else {
+         * palabra += texto.charAt(i);
+         * 
+         * }
+         * 
+         * }
+         * 
+         * if (noHayEspacio) {
+         * conjunto.add(palabra);
+         * }
+         * System.out.println("El numero de palabras unicas son de " + conjunto.size());
+         * }
+         */
+    }
+
+    public void ejercicio4() {
+        /*
+         * Set<String> conjuntoOrdenado = new LinkedHashSet<String>();
+         * Scanner sc = new Scanner(System.in);
+         * boolean salida = true;
+         * do {
+         * System.out.println("Agregar cliente, introduce nombre");
+         * String cliente = sc.nextLine();
+         * conjuntoOrdenado.add(cliente);
+         * for (String nombreCliente : conjuntoOrdenado) {
+         * System.out.print(nombreCliente + " ");
+         * 
+         * }
+         * // System.out.println("Atendiendo actualmente al cliente:" +
+         * // conjuntoOrdenado.());
+         * // System.out.println("El ultimos es actualmente al cliente:" +
+         * // conjuntoOrdenado.);
+         * 
+         * System.out.println();
+         * 
+         * System.out.println("Quieres salir?/ si/no");
+         * String usuario = sc.nextLine().toLowerCase();
+         * 
+         * if (usuario.equals("si")) {
+         * System.out.println("Saliendo");
+         * salida = false;
+         * 
+         * } else {
+         * System.out.println("Continuando");
+         * }
+         * } while (salida);
+         * }
+         * 
+         * 
+         */
+
+        Set<Visitante_Ej4> conjuntoOrdenado = new LinkedHashSet<>();
+
+        Scanner sc = new Scanner(System.in);
+        boolean salida = true;
+        do {
+            System.out.println("Añade nombre visitante");
+            String nombre = sc.nextLine();
+
+            conjuntoOrdenado.add(new Visitante_Ej4(nombre.toLowerCase()));
+
+            for (Visitante_Ej4 visitante_Ej4_Nombre : conjuntoOrdenado) {
+                System.out.println(visitante_Ej4_Nombre + " agregado");
+            }
+
+            System.out.println("¿Quieres continuar? [si/no]");
+            String decision = sc.nextLine().toLowerCase();
+            if (decision.equals("no")) {
+                salida = false;
+            } else {
+                System.out.println("continuando");
+            }
+        } while (salida);
+
+        System.out.println("Todos los nombres");
+
+        for (Visitante_Ej4 visitante_Ej4_Nombre : conjuntoOrdenado) {
+            System.out.println(visitante_Ej4_Nombre);
+        }
+
+    }
+
+    public void ejercicio5() {
+        Scanner sc = new Scanner(System.in);
+        Set<String> conjuntoArbol = new TreeSet<>();
+        System.out.println("Vamos a hacer un diccionarion ordenado alfabeticamente");
+        boolean salida = true;
+        String palabra = "";
+        do {
+
+            palabra = sc.nextLine();
+            conjuntoArbol.add(palabra);
+
+            System.out.println("Quieres salir?/ si/no");
+            String usuario = sc.nextLine().toLowerCase();
+
+            if (usuario.equals("si")) {
+                System.out.println("Saliendo");
+                salida = false;
+
+            } else {
+                System.out.println("Continuando");
+            }
+        } while (salida);
+        System.out.println("Ordenado alfabeticamente");
+        for (String palabras : conjuntoArbol) {
+            System.out.print(palabras + " ");
+        }
+    }
+
+    public void ejercicio6() {
+        Scanner sc = new Scanner(System.in);
+
+        HashMap<String, String> mapa = new HashMap<>();
+        boolean salida = true;
+        String nombre;
+        String nTelfono;
+        do {
+
+            System.out.println("Introduce nombre");
+            nombre = sc.nextLine();
+
+            System.out.println("Introduce numero de telefono");
+            nTelfono = sc.nextLine();
+
+            mapa.put(nombre, nTelfono);
+
+            System.out.println("Quieres salir?/ si/no");
+            String usuario = sc.nextLine().toLowerCase();
+
+            if (usuario.equals("si")) {
+                System.out.println("Saliendo");
+                salida = false;
+
+            } else {
+                System.out.println("Continuando");
+            }
+        } while (salida);
+
+        System.out.println(mapa);
+
+        boolean noEncontrado = true;
+        System.out.println("Busqueda introduce nombre ");
+        String busquedaNombre = sc.nextLine();
+        for (String nombres : mapa.keySet()) {
+
+            if (busquedaNombre.equals(nombres)) {
+                noEncontrado = false;
+            }
+        }
+        if (noEncontrado) {
+            System.out.println("No se ha encontrado el nombre: " + busquedaNombre);
+            System.out.println("Mostrando mapa");
+            System.out.println(mapa);
+
+        } else {
+            System.out.println("Se ha encontrado el nombre: " + busquedaNombre);
+            System.out.println("Su valor respecto a su clave es " +
+                    mapa.get(busquedaNombre));
+            System.out.println("Mostrando mapa");
+            System.out.println(mapa);
+
+        }
+
     }
 
     /*
@@ -965,7 +1003,7 @@ System.out.println("El numero de palabras unicas son de " + conjunto.size());
         ActividadesLista actividadesLista1 = new ActividadesLista();
         ActividadesLista actividadesLista2 = new ActividadesLista();
 
-        actividadesLista1.ejercicio1();
+        // actividadesLista1.ejercicio1();
 
         // actividadesLista1.ejercicio2();
 
@@ -973,7 +1011,7 @@ System.out.println("El numero de palabras unicas son de " + conjunto.size());
         // el perro mordio al otro pero el perro fue listo no mordio al otro
         // 9 palabraws
 
-        // actividadesLista1.ejercicio4();
+        actividadesLista1.ejercicio4();
 
         // actividadesLista1.ejercicio5();
 
@@ -997,7 +1035,7 @@ System.out.println("El numero de palabras unicas son de " + conjunto.size());
         // actividadesLista2.ejercicio6Pdf2();
 
         // actividadesLista2.ejercicio7Pdf2();
-       // actividadesLista2.ejercicio8Pdf2(); I
+        // actividadesLista2.ejercicio8Pdf2(); I
         // actividadesLista2.ejercicio9Pdf2();
         // actividadesLista2.ejercicio10Pdf2();
 
