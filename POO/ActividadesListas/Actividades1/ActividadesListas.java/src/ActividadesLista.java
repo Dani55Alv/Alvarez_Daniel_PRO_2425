@@ -148,6 +148,7 @@ public class ActividadesLista {
     // @override
     // to string reutrn palabra.
     // Al hacer add puedes hacer palabra.toLowerCase(); //ENTRA EN EXAMEN
+    // Arraylist y hasmap.
 
     public void ejercicio3() {
         Scanner sc = new Scanner(System.in);
@@ -233,7 +234,6 @@ public class ActividadesLista {
          */
 
         Set<Visitante_Ej4> conjuntoOrdenado = new LinkedHashSet<>();
-
         Scanner sc = new Scanner(System.in);
         boolean salida = true;
         do {
@@ -254,13 +254,18 @@ public class ActividadesLista {
                 System.out.println("continuando");
             }
         } while (salida);
-
         System.out.println("Todos los nombres");
 
         for (Visitante_Ej4 visitante_Ej4_Nombre : conjuntoOrdenado) {
             System.out.println(visitante_Ej4_Nombre);
         }
 
+        // Mirar ejemplo personaje
+        // poner en constructo
+        // sobrescribir
+        for (Visitante_Ej4 visitante_Ej4_Nombre : conjuntoOrdenado) {
+            System.out.println(visitante_Ej4_Nombre);
+        }
     }
 
     public void ejercicio5() {
@@ -582,6 +587,10 @@ public class ActividadesLista {
         nombres.add("Eva");
 
         System.out.println(nombres.size());
+
+        // En vez de un array list podriamos hacer un clase con un nombre a ver que tal.
+
+        // Sustituir ArrayList<String>> por Class_File --> Nombre_Ej4PF2.
 
         // Creamos el HashMap para los grupos
         HashMap<Integer, ArrayList<String>> grupos = new HashMap<>();
@@ -942,56 +951,66 @@ public class ActividadesLista {
      * 4. Muestra los resultados en la consola.
      */
     public void ejercicio8Pdf2() {
-        ArrayList<String> listaPalbras = new ArrayList<>();
+        ArrayList<Ejecrcicio8PDF2> listaPalbras = new ArrayList<>();
         Scanner sc = new Scanner(System.in);
-        boolean noHayEspacio = true;
 
         System.out.println("Introduce un texto para ver cuanta palabras se repiten.");
 
         String texto = sc.nextLine().toLowerCase();
-        int palabraCantidad = 1;
-        String palabra = "";
+        String[] palabras = texto.split("[,\\. ]+"); // delimiatdore , . y espacio
+
+        for (String string : palabras) {
+            Ejecrcicio8PDF2 agregar = new Ejecrcicio8PDF2(string);
+            listaPalbras.add(agregar);
+        }
+
         LinkedHashMap<String, Integer> mapaPalabrasRepetidas = new LinkedHashMap<>();
 
-        Set<String> conjunto = new HashSet<String>();
-        // String [] palaabras = frase.split('');
+        Set<Ejecrcicio8PDF2> conjunto = new HashSet<>();
 
-        for (int i = 0; i < texto.length(); i++) {
-            if (texto.charAt(i) == ' ' || texto.charAt(i) == '.') {
+        for (Ejecrcicio8PDF2 palabritas : listaPalbras) {
+            if (conjunto.add(palabritas) == true) {
+                // Crear un nuevo objeto que sea un atributo int para contar el numero de
+                // palabras.
+                // Atributo //Atributo +1
+                System.out.println(palabritas.getContador());
 
-                if (conjunto.add(palabra) == false) {
+                palabritas.setContador(
+                        palabritas.getContador() + 1);
+                int a = palabritas.getContador();
 
-                    mapaPalabrasRepetidas.put(palabra, palabraCantidad);
-                    System.out.println(palabra);
-                    if (mapaPalabrasRepetidas.containsKey(palabra)) {
-                        int valorActual = mapaPalabrasRepetidas.get(palabra);
-                        mapaPalabrasRepetidas.put(palabra, valorActual + 1); // Incrementa el conteo
-                    } else {
-                        mapaPalabrasRepetidas.put(palabra, 1); // Primera vez que aparece la palabra
+                mapaPalabrasRepetidas.put(palabritas.getPalabra(), a);
+                System.out.println(a);
+                System.out.println(palabritas.getContador());
+
+            } else {
+
+                // aqui se itera el conjunto
+                for (Ejecrcicio8PDF2 palabrasConjunto : conjunto) {
+                    if (palabrasConjunto.equals(palabritas)) {
+                        palabrasConjunto.setContador(
+                                palabrasConjunto.getContador() + 1);
+                        int a = palabrasConjunto.getContador();
+
+                        mapaPalabrasRepetidas.put(palabritas.getPalabra(), a);
+                        System.out.println(a);
+                        System.out.println(palabrasConjunto.getContador());
+
                     }
 
-                } else {
-
-                    conjunto.add(palabra);
-                    mapaPalabrasRepetidas.put(palabra, palabraCantidad);
                 }
 
-                palabra = "";
-                noHayEspacio = false;
-            } else {
-                palabra += texto.charAt(i);
+                // Atributo //Atributo +1
 
             }
 
         }
 
-        if (noHayEspacio) {
-            conjunto.add(palabra);
-            mapaPalabrasRepetidas.put(palabra, palabraCantidad);
-        }
-
         System.out.println("El numero de palabras repetidas");
         System.out.println(mapaPalabrasRepetidas);
+        // ¡Ojo! cuidado no es lo mismo iterar en la lista donde hay objetos repetidos
+        // que en el conjunto donde no hay duplicados,
+        // sino no se incrementan los numeros.
 
         // Ejemplo para meter.
         // El aparato funciona mal. Pero es eso un aparato.
@@ -1011,7 +1030,7 @@ public class ActividadesLista {
         // el perro mordio al otro pero el perro fue listo no mordio al otro
         // 9 palabraws
 
-        actividadesLista1.ejercicio4();
+        // actividadesLista1.ejercicio4();
 
         // actividadesLista1.ejercicio5();
 
@@ -1035,7 +1054,7 @@ public class ActividadesLista {
         // actividadesLista2.ejercicio6Pdf2();
 
         // actividadesLista2.ejercicio7Pdf2();
-        // actividadesLista2.ejercicio8Pdf2(); I
+        actividadesLista2.ejercicio8Pdf2();
         // actividadesLista2.ejercicio9Pdf2();
         // actividadesLista2.ejercicio10Pdf2();
 

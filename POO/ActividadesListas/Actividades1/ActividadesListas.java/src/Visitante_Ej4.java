@@ -1,3 +1,4 @@
+import java.util.Comparator;
 import java.util.Objects;
 
 public class Visitante_Ej4 {
@@ -14,10 +15,7 @@ private String nombre;
 
      @Override
     public boolean equals(Object obj) {
-        if (this == obj)
-            return true;
-        if (obj == null || getClass() != obj.getClass())
-            return false;
+        
         Visitante_Ej4 otroNombre = (Visitante_Ej4) obj;
         return nombre.equals(otroNombre.nombre);
     }
@@ -31,4 +29,8 @@ private String nombre;
     public String toString() {
         return nombre; //Se duelve al imprimir el objeto, el atributo palabra.
     }
+   
+
+   
+    
 }

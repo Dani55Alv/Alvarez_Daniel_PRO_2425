@@ -1,3 +1,4 @@
+import java.util.Comparator;
 import java.util.Objects;
 
 public class Palabra_Ej3 {
@@ -29,4 +30,6 @@ this.palabra= palabra;
     public String toString() {
         return palabra; //Se duelve al imprimir el objeto, el atributo palabra.
     }
+
+
 }
