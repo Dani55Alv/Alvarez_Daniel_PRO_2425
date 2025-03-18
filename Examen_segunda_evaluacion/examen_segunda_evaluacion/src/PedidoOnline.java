@@ -7,7 +7,7 @@ public class PedidoOnline extends Pedido {
 
 	private String direccionEntrega;
 
-	public PedidoOnline(String direccionEntrega, int idPedido, List<Pizza> IPizzas) {
+	public PedidoOnline(int idPedido, String direccionEntrega ) {
 		//super(idPedido, IPizzas);
 		this.direccionEntrega = direccionEntrega;
 		this.idPedido = idPedido;
