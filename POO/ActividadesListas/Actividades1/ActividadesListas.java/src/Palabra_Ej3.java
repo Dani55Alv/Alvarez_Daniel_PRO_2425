@@ -10,6 +10,10 @@ this.palabra= palabra;
 
     }
 
+    public void setPalabra(String palabra) {
+        this.palabra = palabra;
+    }
+
 
     @Override
     public boolean equals(Object obj) {

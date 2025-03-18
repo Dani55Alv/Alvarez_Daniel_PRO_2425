@@ -1011,6 +1011,8 @@ public class ActividadesLista {
         // ¡Ojo! cuidado no es lo mismo iterar en la lista donde hay objetos repetidos
         // que en el conjunto donde no hay duplicados,
         // sino no se incrementan los numeros.
+        // Es decir para poder incrementar con exito hay que hacer los incrementos en la
+        // misma clase. (No en una luego en otra).
 
         // Ejemplo para meter.
         // El aparato funciona mal. Pero es eso un aparato.
@@ -1018,7 +1020,7 @@ public class ActividadesLista {
     }
 
     public static void main(String[] args) throws Exception {
-
+Scanner sc = new Scanner(System.in);
         ActividadesLista actividadesLista1 = new ActividadesLista();
         ActividadesLista actividadesLista2 = new ActividadesLista();
 
