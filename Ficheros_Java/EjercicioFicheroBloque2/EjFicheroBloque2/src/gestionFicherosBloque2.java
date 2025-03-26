@@ -43,12 +43,12 @@ private String nombreGestion;
                 int maxLength = Math.max(contenidoPorLineaA.size(), contenidoPorLineaB.size());
                 for (int i = 0; i < maxLength; i++) {
                     // Si la lista A tiene una línea en la posición i, escribirla
-                    if (i < contenidoPorLineaA.size()) {
+                    if (i < contenidoPorLineaA.size() && i %2==0) {
                         Files.write(rutaDef, (contenidoPorLineaA.get(i) + System.lineSeparator()).getBytes(),
                                 StandardOpenOption.APPEND);
                     }
                     // Si la lista B tiene una línea en la posición i, escribirla
-                    if (i < contenidoPorLineaB.size()) {
+                    if (i < contenidoPorLineaB.size() && i % 2 == 1) {
                         Files.write(rutaDef, (contenidoPorLineaB.get(i) + System.lineSeparator()).getBytes(),
                                 StandardOpenOption.APPEND);
                     }
