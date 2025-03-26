@@ -21,6 +21,8 @@ public class Pizza implements PizzaInterfaz {
     public Pizza(String nombre, double precio) {
         this.nombre = nombre;
         this.precio = precio;
+     this.numIngredientes=0;
+     this.ingredientes = new String [MAX_INGREDIENTES];
 
     }
 
@@ -61,6 +63,7 @@ public class Pizza implements PizzaInterfaz {
         boolean NoPuedeAgregarse = true;
 
         if (numIngredientes < MAX_INGREDIENTES) {
+             NoPuedeAgregarse = false;
 
         }
 

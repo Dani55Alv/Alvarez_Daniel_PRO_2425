@@ -9,6 +9,7 @@ public class PedidoOnline extends Pedido {
 
 	public PedidoOnline(int idPedido, String direccionEntrega ) {
 		//super(idPedido, IPizzas);
+		//En clase mariano: super(idPedido);
 		this.direccionEntrega = direccionEntrega;
 		this.idPedido = idPedido;
 		this.IPizzas = new LinkedList<>();
