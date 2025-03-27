@@ -19,8 +19,6 @@ public class App3 {
         List<String> chat = gestionToxicidad.leerFicheros(ruta, archivo);
         System.out.println("Version censurada");
                           String lineaPorCaractar="";
-                          String lineaPorCaractarCensurado = "";
-
                           String palabraPorCaractar="";
                          String espantapájaros = "espantapájaros";
                          boolean imprimir = false;
@@ -33,31 +31,20 @@ public class App3 {
                 palabraPorCaractar += caracter; //Detecta palabrotas
                    lineaPorCaractar += caracter; //Imprime las lineas char a char
               
-                  imprimir=false;
+                  
                
                 if (palabraPorCaractar.equals("espantapájaros")) {
-                    // i= i-espantapájaros.length();
-              imprimir =true;
-                    
-                    for (int j = 0; j < lineaPorCaractar.length() - espantapájaros.length(); j++) {
-                               lineaPorCaractarCensurado += lineaPorCaractar.charAt(j);         
-                            
-                            } 
-                    
-
-
-
-
+                   
                     System.out.println("Palabra mal sonante detectada");
-              //     i= i-espantapájaros.length()+ (espantapájaros.length());
+                   i= i-espantapájaros.length()+ (espantapájaros.length());
                  // lineaPorCaractar += "YY";
 
                    for (int j = 0; j < espantapájaros.length(); j++) {
                          if (j==0 || j == espantapájaros.length()-1) {
-                             lineaPorCaractarCensurado += espantapájaros.charAt(j);
+                             lineaPorCaractar += espantapájaros.charAt(j);
 
                          }else{
-                             lineaPorCaractarCensurado += "*";
+                            lineaPorCaractar += "*";
 
                          }
                    }
@@ -72,12 +59,7 @@ public class App3 {
                      
                 }
             }
-                  if (imprimir==true) {
-                    System.out.println(lineaPorCaractarCensurado);
-                  }else{
-                      System.out.print(lineaPorCaractar);
-
-                  }
+            System.out.print(lineaPorCaractar);
 
             lineaPorCaractar = "";
             System.out.println();
