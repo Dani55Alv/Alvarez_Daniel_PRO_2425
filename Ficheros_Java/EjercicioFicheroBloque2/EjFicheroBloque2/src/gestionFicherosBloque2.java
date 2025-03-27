@@ -9,41 +9,41 @@ import java.util.List;
 public class gestionFicherosBloque2 {
 
     // C:\Users\daniy\OneDrive\Escritorio\visualStudioClases\gitHub\RepositorioClase\Alvarez_Daniel_PRO_2425\Ficheros_Java\EjercicioFicheroBloque1\ejFicheroBloque1
-private String nombreGestion;
-    public gestionFicherosBloque2(String nombreGestion){
+    private String nombreGestion;
+
+    public gestionFicherosBloque2(String nombreGestion) {
         this.nombreGestion = nombreGestion;
 
     }
 
-    public void combinarArchivo(String archivoCombinar, String archivoA, String archivoB, String rutaComun){
- 
-    Path ruta = Paths.get(rutaComun, archivoCombinar);
+    public void combinarArchivo(String archivoCombinar, String archivoA, String archivoB, String rutaComun) {
+
+        Path ruta = Paths.get(rutaComun, archivoCombinar);
 
         if (Files.exists(ruta)) {
-      List<String> b =    leerFichero1(rutaComun, archivoB);
+            List<String> b = leerFichero1(rutaComun, archivoB);
 
-      List<String> a = leerFichero1(rutaComun, archivoA);
+            List<String> a = leerFichero1(rutaComun, archivoA);
 
-      escribirFichero(rutaComun, archivoCombinar, b, a );
+            escribirFichero(rutaComun, archivoCombinar, b, a);
         } else {
             // List string
             System.out.println("No existe el fichero a combinar");
         }
 
-   
     }
- 
-    public void escribirFichero(String ruta, String nombreFichero, List<String> contenidoPorLineaA, 
+
+    public void escribirFichero(String ruta, String nombreFichero, List<String> contenidoPorLineaA,
             List<String> contenidoPorLineaB) {
 
-              Path rutaDef = Paths.get(ruta, nombreFichero);
+        Path rutaDef = Paths.get(ruta, nombreFichero);
 
         try {
             if (Files.exists(rutaDef)) {
                 int maxLength = Math.max(contenidoPorLineaA.size(), contenidoPorLineaB.size());
                 for (int i = 0; i < maxLength; i++) {
                     // Si la lista A tiene una línea en la posición i, escribirla
-                    if (i < contenidoPorLineaA.size() && i %2==0) {
+                    if (i < contenidoPorLineaA.size() && i % 2 == 0) {
                         Files.write(rutaDef, (contenidoPorLineaA.get(i) + System.lineSeparator()).getBytes(),
                                 StandardOpenOption.APPEND);
                     }
@@ -64,7 +64,6 @@ private String nombreGestion;
         }
     }
 
-
     public List<String> leerFichero1(String ruta, String archivo) {
 
         Path rutaDef = Paths.get(ruta, archivo);
@@ -81,15 +80,15 @@ private String nombreGestion;
                 System.out.println("Reproduciendo por linea el texto");
                 for (String linea : archivoTexto) {
                     System.out.println(linea);
-                        textoTotal.add(linea);
-                    }     
-                    System.out.println("Fin");
+                    textoTotal.add(linea);
+                }
+                System.out.println("Fin");
             }
 
         } catch (Exception e) {
             System.err.println("Error");
             e.printStackTrace();
         }
-return textoTotal;
+        return textoTotal;
     }
 }

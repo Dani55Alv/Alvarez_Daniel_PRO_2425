@@ -1,7 +1,8 @@
 {
   "java.project.sourcePaths": [
     "EjercicioFicheroBloque2/EjFicheroBloque2/src",
+    "EjercicioFicheroBloque2/EjFicheroBloque2",
     "EjercicioFicheroBloque1/ejFicheroBloque1/src",
-    "EjercicioFicheroBloque2/EjFicheroBloque2"
+    "EjercicioCharToxico/chatToxico/src"
   ]
 }
