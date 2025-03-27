@@ -21,9 +21,13 @@ public class Main {
         String palabraPorCaractar = "";
         String espantapájaros = "espantapájaros";
 
-        
+        //Nueva lista para hacer el texto censurado.
+List<String> textoCensurado= new ArrayList<>(); ;
+//list.asArray 
+
         // Lista de palabras a censurar
         List<String> palabrasCensuradas = new ArrayList<>();
+        
         palabrasCensuradas.add("espantapájaros");
         palabrasCensuradas.add("pelotudo");
         palabrasCensuradas.add("manco");

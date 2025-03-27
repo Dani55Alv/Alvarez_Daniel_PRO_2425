@@ -41,3 +41,4 @@ private List<String> lista ;
      }
 
 }
+//Hacer funciones es decir con return.

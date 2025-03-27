@@ -91,4 +91,7 @@ public class gestionFicherosBloque2 {
         }
         return textoTotal;
     }
+
+
+
 }
