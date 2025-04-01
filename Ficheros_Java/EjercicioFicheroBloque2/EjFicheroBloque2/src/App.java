@@ -82,6 +82,51 @@ public class App {
 
     }
 
+    public static void ejercicio1(){
+
+               gestionFicherosBloque2 gestionFicherosBloque2 = new gestionFicherosBloque2("Gestion2");
+
+        String ruta = "";
+        String archivo = "";
+
+        Scanner sc = new Scanner(System.in);
+
+        System.out.println("Introduce ruta");
+        ruta = sc.nextLine();
+        System.out.println("Introduce fichero");
+        archivo = sc.nextLine();
+     
+
+        try {
+            gestionFicherosBloque2.deleteFichero(ruta, archivo);
+            
+        } catch (Exception e) {
+System.out.println("Archivo "+ archivo +" seleccionado no encontrado");
+
+        }
+    }
+    public static void ejercicio3(){
+        gestionFicherosBloque2 gestionFicherosBloque2 = new gestionFicherosBloque2("Gestion2");
+
+        String ruta = "";
+        String archivo = "";
+
+        Scanner sc = new Scanner(System.in);
+
+        System.out.println("Introduce ruta");
+        ruta = sc.nextLine();
+        System.out.println("Introduce fichero");
+        archivo = sc.nextLine();
+
+        try {
+            gestionFicherosBloque2.verPropiedadesFichero(ruta, archivo);
+
+        } catch (Exception e) {
+            System.out.print("Error" );
+            e.printStackTrace();
+        }
+    }
+
     public static void main(String[] args) throws Exception {
 
         /*
@@ -96,8 +141,12 @@ public class App {
          * pueden
          * tener tamaños diferentes.
          */
+        
+         //ejercicio1();
         // ejercicio2();
-        ejercicio4();
+        // ejercicio3();
+
+         ejercicio4();
 
     }
 }

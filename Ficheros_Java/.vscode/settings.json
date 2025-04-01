@@ -1,8 +1,11 @@
 {
   "java.project.sourcePaths": [
+    "EjercicioFicheroBloque4/EjFicheroBloq4/src",
+    "EjercicioFicheroBloque3/EjFiblo3/src",
     "EjercicioFicheroBloque2/EjFicheroBloque2/src",
     "EjercicioFicheroBloque2/EjFicheroBloque2",
     "EjercicioFicheroBloque1/ejFicheroBloque1/src",
-    "EjercicioCharToxico/chatToxico/src"
+    "EjercicioCharToxico/chatToxico/src",
+    "FicherosBinarios/ficherosBinarios/src"
   ]
 }

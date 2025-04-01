@@ -1,8 +1,11 @@
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 public class GestionToxicidad {
 
@@ -39,6 +42,26 @@ private List<String> lista ;
          }
          return textoTotal;
      }
+public void escribirFichero(String rutaCompleta ,List<String> contenidoPorLinea) {
+
+        Path rutaYFichero = Paths.get(
+                rutaCompleta
+        );
+
+        try {
+            if (Files.exists(rutaYFichero)) {
+                Files.write(rutaYFichero, contenidoPorLinea, StandardOpenOption.APPEND);
+
+            } else {
+                // List string
+                System.out.println("No existe el fichero a escribir");
+
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
 }
 //Hacer funciones es decir con return.

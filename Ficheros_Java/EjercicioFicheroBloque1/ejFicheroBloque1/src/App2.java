@@ -27,41 +27,41 @@ System.out.println("Nuestra dirección");
 String ruta;
 String archivo;
 
-/*
- * System.out.println("Eliga un opcion segun la solución");
- * System.out.println("Solución = 1        solución alternativa= 2");
- * System.out.println("Introduce el numero para seleccionar la solución");
- * int decision = sc.nextInt();
- * sc.nextLine();
- * switch (decision) {
- * case 1:
- * 
- * System.out.println("Has elegido la solucion 1");
- * System.out.println("Inserta la ruta" );
- * ruta= sc.nextLine();
- * 
- * System.out.println("Inserta el archivo");
- * archivo=sc.nextLine();
- * gestion.leerFichero1(ruta, archivo);
- * 
- * break;
- * 
- * case 2:
- * 
- * System.out.println("Has elegido la solucion 2 alternativa");
- * System.out.println("Inserta la ruta");
- * ruta = sc.nextLine();
- * 
- * System.out.println("Inserta el archivo");
- * archivo = sc.nextLine();
- * gestion.leerFichero2(ruta, archivo);
- * 
- * break;
- * 
- * default:
- * break;
- * }
- */
+
+  System.out.println("Eliga un opcion segun la solución");
+  System.out.println("Solución = 1        solución alternativa= 2");
+  System.out.println("Introduce el numero para seleccionar la solución");
+  int decision = sc.nextInt();
+  sc.nextLine();
+  switch (decision) {
+  case 1:
+  
+  System.out.println("Has elegido la solucion 1");
+  System.out.println("Inserta la ruta" );
+  ruta= sc.nextLine();
+  
+  System.out.println("Inserta el archivo");
+  archivo=sc.nextLine();
+  gestion.leerFichero1(ruta, archivo);
+  
+  break;
+  
+  case 2:
+  
+  System.out.println("Has elegido la solucion 2 alternativa");
+  System.out.println("Inserta la ruta");
+  ruta = sc.nextLine();
+  
+  System.out.println("Inserta el archivo");
+  archivo = sc.nextLine();
+  gestion.leerFichero2(ruta, archivo);
+  
+  break;
+  
+  default:
+  break;
+  }
+ 
 
 
 System.out.println("Introduce un fichero y direccion para generar dos ficheros independientes que tenga solo sus consonante y otro sus vocales");

@@ -65,7 +65,8 @@ public class gestionFicheros {
     }
 
     public void leerFichero2(String ruta, String archivo) {
-
+        int cantidadLetras = 0;
+        int cantidadNumeros = 0;
         Path rutaDef = Paths.get(ruta, archivo);
 
         List<String> archivoTexto;
@@ -75,19 +76,41 @@ public class gestionFicheros {
                 System.out.println("El archivo no existe");
             } else {
 
+                
                 archivoTexto = Files.readAllLines(rutaDef);
                 System.out.println("Reproduciendo por linea el texto");
 
                 for (String linea : archivoTexto) {
-                    System.out.println(linea);
 
-                    String[] nLetras = linea.split(linea);
+                    String[] porLinea = linea.split("[ ,]+");
 
-                    System.out.println("Cantidad de letras " + nLetras.length);
+                    for (int i = 0; i < porLinea.length; i++) {
+
+                        String valor = porLinea[i];
+
+                        for (int j = 0; j < valor.length(); j++) {
+                            if (Character.isDigit(valor.charAt(j))) {
+                                System.out.println(valor.charAt(j) + " es un número.");
+                                cantidadNumeros++;
+                            } else if (Character.isLetter(valor.charAt(j))) {
+                                System.out.println(valor.charAt(j) + " es una letra.");
+
+                                cantidadLetras++;
+
+                            } else {
+                                System.out.println("Otro caraceter");
+                            }
+                        }
+
+                    }
 
                 }
 
                 System.out.println("Fin de reproduccion por linea del texto");
+
+                System.out.println("Cantidad de letras " + cantidadLetras);
+
+                System.out.println("Cantidad de numeros " + cantidadNumeros);
 
             }
         } catch (Exception e) {
@@ -109,10 +132,9 @@ public class gestionFicheros {
 
         List<String> archivoTexto;
 
-        List<String> frase = new ArrayList<>();
-        ;
-        List<List<String>> arrayarchivoTexto = new ArrayList<>();
-        List<List<String>> arrayarchivoTextoConsonantes = new ArrayList<>();
+        String frase = "";
+        List<String> arrayarchivoTextoConsonantes = new ArrayList<>();
+        List<String> arrayarchivoTextoVocales = new ArrayList<>();
 
         try {
             if (Files.notExists(rutaDef)) {
@@ -126,9 +148,11 @@ public class gestionFicheros {
                     System.out.println(linea);
 
                     for (char c : linea.toCharArray()) {
+                        frase = "";
+
                         if (c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u') {
                             // System.out.println(c + " es unaa vocal.");
-                            frase.add(Character.toString(c));
+                            frase += (Character.toString(c));
                         } else if (Character.isDigit(c)) {
                             // System.out.println(c + " es un numerico.");
 
@@ -140,27 +164,26 @@ public class gestionFicheros {
 
                         // archivoTexto.size();
 
-                        arrayarchivoTexto.add(new ArrayList<>(frase)); // Clona la lista antes de limpiarla
-                        frase.clear();
+                        arrayarchivoTextoVocales.add(frase);
 
                     }
-
                     for (char c : linea.toCharArray()) {
+                        frase = "";
+
                         if (c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u') {
-                            // System.out.println(c + " es unaa vocal.");
+                            // System.out.println(c + " es una vocal.");
                         } else if (Character.isDigit(c)) {
                             // System.out.println(c + " es un numerico.");
 
                         } else {
                             // System.out.println(c + " es otro carácter.");
-                            frase.add(Character.toString(c));
+                            frase += (Character.toString(c));
 
                         }
 
                         // archivoTexto.size();
 
-                        arrayarchivoTextoConsonantes.add(new ArrayList<>(frase)); // Clona la lista antes de limpiarla
-                        frase.clear();
+                        arrayarchivoTextoConsonantes.add(frase);
 
                     }
 
@@ -170,23 +193,17 @@ public class gestionFicheros {
                 System.out.println();
                 System.out.println("Reproduciendo vocales");
 
-                for (List<String> list : arrayarchivoTexto) {
+                for (String frases : arrayarchivoTextoVocales) {
 
-                    for (String frases : list) {
-                        System.out.print(frases + " ");
-
-                    }
+                    System.out.print(frases + " ");
 
                 }
                 System.out.println();
                 System.out.println("Reproduciendo consonantes");
 
-                for (List<String> list : arrayarchivoTextoConsonantes) {
+                for (String frases : arrayarchivoTextoConsonantes) {
 
-                    for (String frases : list) {
-                        System.out.print(frases + " ");
-
-                    }
+                    System.out.print(frases + " ");
 
                 }
 
@@ -197,17 +214,9 @@ public class gestionFicheros {
 
                 crearFichero(vocalesFicheroNombre);
 
-                for (List<String> list : arrayarchivoTexto) {
+                escribirFichero(vocalesFicheroNombre, arrayarchivoTextoVocales);
 
-                    escribirFichero(vocalesFicheroNombre, list);
-
-                }
-
-                for (List<String> list : arrayarchivoTextoConsonantes) {
-
-                    escribirFichero(consonantesFicheroNombre, list);
-
-                }
+                escribirFichero(consonantesFicheroNombre, arrayarchivoTextoConsonantes);
 
                 // escribirFichero(consonantes, contenidoConsonantes);
                 // escribirFichero(vocales, contenidoVocales);

@@ -1,8 +1,11 @@
 import java.io.IOException;
+import java.nio.file.DirectoryStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
+import java.nio.file.attribute.BasicFileAttributes;
+import java.nio.file.attribute.DosFileAttributes;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -40,15 +43,18 @@ public class gestionFicherosBloque2 {
 
         try {
             if (Files.exists(rutaDef)) {
-                int maxLength = Math.max(contenidoPorLineaA.size(), contenidoPorLineaB.size());
-                for (int i = 0; i < maxLength; i++) {
-                    // Si la lista A tiene una línea en la posición i, escribirla
-                    if (i < contenidoPorLineaA.size() && i % 2 == 0) {
+                int textoMasDensoPorLinea = Math.max(contenidoPorLineaA.size(), contenidoPorLineaB.size());
+                // Iteramos sobre el contenido de ambas listas, asegurándonos de no quedarnos
+                // sin procesar ninguna línea
+                // Incluso si una lista es más corta, el valor de `textoMasDensoPorLinea` garantiza que
+                // ambas listas sean recorridas por completo
+                for (int i = 0; i < textoMasDensoPorLinea; i++) {
+                   
+                    if (i < contenidoPorLineaA.size() ) {
                         Files.write(rutaDef, (contenidoPorLineaA.get(i) + System.lineSeparator()).getBytes(),
                                 StandardOpenOption.APPEND);
                     }
-                    // Si la lista B tiene una línea en la posición i, escribirla
-                    if (i < contenidoPorLineaB.size() && i % 2 == 1) {
+                    if (i < contenidoPorLineaB.size() ) {
                         Files.write(rutaDef, (contenidoPorLineaB.get(i) + System.lineSeparator()).getBytes(),
                                 StandardOpenOption.APPEND);
                     }
@@ -92,6 +98,88 @@ public class gestionFicherosBloque2 {
         return textoTotal;
     }
 
+    public void deleteFichero(String ruta, String nombreFichero) throws IOException {
+        // Borrar
+        // Necesitamos un path es decir una ruta pero ya lo tenemos
+        // Path rutaDirectorio = Paths.get("DataSet/archivo.txt"); ejemplo;
 
+        Path rutaDef = Paths.get(ruta, nombreFichero);// ruta y nombre archivo (Donde crea el archivo .txt)
+
+        // Antes de borrar hay que preguntar si existe
+        if (Files.exists(rutaDef)) {
+            try { // !Ojo¡ ademas de con try-catch tambien se pueden lanzar excepciones con if
+                Files.delete(rutaDef);
+                System.out.println("Archivo eliminado correctamente.");
+            } catch (IOException e) {
+                throw new IOException("No se pudo eliminar el archivo: " + rutaDef, e);
+            }
+        } else {
+            System.out.println("El archivo " + nombreFichero + " no existe en la ruta especificada.");
+        }
+    }
+
+
+
+     public void verPropiedadesFichero(String ruta, String fichero) throws IOException{
+        Path rutaCompleta = Paths.get(ruta, fichero);
+ 
+        if (Files.exists(rutaCompleta)) {
+
+            System.out.println("El fichero existe");
+
+        try {
+            // obtener atributos
+            BasicFileAttributes atributos = Files.readAttributes(rutaCompleta, BasicFileAttributes.class);
+            // !0j0¡ trabajamos con el nombre en este caso "atributos".
+            // Mostrando/Accediendo a los atributos
+
+            System.out.println("Es un directorio?: " + atributos.isDirectory());
+            System.out.println("Es un fichero? " + atributos.isRegularFile());
+
+            if (atributos.isDirectory() == true) {
+
+
+        try {
+            // Creamos el Stream del contenido del directorio
+            DirectoryStream<Path> flujoDatos = Files.newDirectoryStream(rutaCompleta);
+            System.out.println("Contenido del directorio llamado "+ fichero);
+            // Iteramos sobre el contenido
+            for (Path archivo : flujoDatos) {
+                System.out.println(archivo); // imprime el nombre del archivo
+            }
+
+        } catch (IOException e) {
+            System.out.println("Error en el listado de Archivos");
+        }
+    
+
+            }else{
+                System.out.println("Tamaño del fichero: " + atributos.size());
+                System.out.println("Nombre del fichero: " + rutaCompleta.getFileName());
+
+                System.out.println("Permisos del fichero " + fichero);
+//Los permisos es con la clase Files;
+System.out.println( "Es leible? --> "  +               Files.isReadable(rutaCompleta));
+              System.out.println("Se puede escribir? --> " + Files.isWritable(rutaCompleta));  
+                System.out.println("Se puede ejecutar? --> " + Files.isExecutable(rutaCompleta));
+
+
+DosFileAttributes atributosPermisos = Files.readAttributes(rutaCompleta, DosFileAttributes.class);
+            System.out.println("Es oculto: " + atributosPermisos.isHidden());
+            System.out.println("Es de solo lectura: " + atributosPermisos.isReadOnly());
+
+
+            }
+          
+        } catch (Exception e) {
+            
+            e.printStackTrace();
+        }
+    }else{
+
+        System.out.println("NO existe el fichero en tal ruta " );
+        throw new IOException();
+    }
+    }
 
 }
