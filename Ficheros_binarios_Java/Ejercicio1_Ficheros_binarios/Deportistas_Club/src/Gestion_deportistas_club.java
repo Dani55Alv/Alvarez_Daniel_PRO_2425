@@ -1,3 +1,10 @@
+import java.io.InputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.OutputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -123,11 +130,54 @@ for (Deportista deportistas : getListaclub()) {
     }
 
     public void grabarListaDeportistas(){
+        //Grabando objetos
+// Creamos la lista de personas
+// Los objetos que queramos serializar deben implementar la interfaz "Serializable"
+
+// Creamos una ruta para guardar el objeto
+Path ruta = Paths.get(
+        "C:\\Users\\daniy\\OneDrive\\Escritorio\\visualStudioClases\\gitHub\\RepositorioClase\\Alvarez_Daniel_PRO_2425\\Ficheros_binarios_Java\\Ejercicio1_Ficheros_binarios\\Carpeta_Achivos_binario\\club.bin");
+;
+// Creamos un flujo de bits de salida para serialización con ...
+try {
+    // Asignamos un archivo a un flujo de salida de datos
+    OutputStream archivoSalida = Files.newOutputStream(ruta);
+    // Especificamos que se trata de un flujo de salida de objetos
+    ObjectOutputStream flujoSalida = new ObjectOutputStream(archivoSalida);
+    // Escribimos el objeto en el flujo de salida.
+    flujoSalida.writeObject(listaclub);
+} catch (Exception e) {
+    e.printStackTrace();
+    System.out.println("No existe ruta");
+}
+
 
     }
 
     public void recuperarListaDeportistas() {
 
+//Creamos una ruta para el leer el archivo
+Path rutaRecuperar = Paths.get(
+        "C:\\Users\\daniy\\OneDrive\\Escritorio\\visualStudioClases\\gitHub\\RepositorioClase\\Alvarez_Daniel_PRO_2425\\Ficheros_binarios_Java\\Ejercicio1_Ficheros_binarios\\Carpeta_Achivos_binario\\club.bin");
+
+try {
+    //Asignamos el flujo de lectura a un flujo de entrada datos
+    InputStream archivoEntrada = Files.newInputStream(rutaRecuperar);
+
+    //Especificamos que se trata de un flujo de entrada de objetos
+    ObjectInputStream flujoEntrada = new ObjectInputStream(archivoEntrada);
+
+    //Leemos el flujo de entrada y lo asignamos a la lista, especificando el tipo de objeto que estamos leyendo.
+    listaclub = (List<Deportista>) flujoEntrada.readObject();
+   
+   //Comprobamos la correcta recuperaciñon del objeto.
+    for (Deportista p: listaclub){
+System.out.println(p);
+    }
+} catch (Exception e) {
+e.printStackTrace();
+System.out.println("No existe ruta");
+}
     }
 
 }

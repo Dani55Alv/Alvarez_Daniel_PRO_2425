@@ -16,7 +16,10 @@ public class App {
             System.out.println("3. Actualizar datos (dni, no se puede)");
             System.out.println("4. Listar por orden alfabetico de nombre");
             System.out.println("5. Listar por orden de edad");
-            System.out.println("6. Salir");
+            System.out.println("6. guardar");
+            System.out.println("7. recuperar");
+
+            System.out.println("8. Salir");
 
             System.out.print("Seleccione una opción: ");
 
@@ -28,7 +31,7 @@ public class App {
                     boolean valido = true;
                     System.out.println("Dando de alta");
                     System.out.println("Introduce dni");
-                    String pasandoDni= sc.nextLine();
+                    String pasandoDni = sc.nextLine();
 
                     System.out.println("Introduce nombre");
                     String pasandoNombre = sc.nextLine();
@@ -95,8 +98,6 @@ public class App {
                     System.out.println("Introduce el cambio de fecha");
                     String actualizacionfechaNac = sc.nextLine();
 
-                 
-
                     seleccionDeporte = null;
 
                     do {
@@ -142,21 +143,25 @@ public class App {
 
                 case 4:
                     System.out.println("Mostrando deportistas por orden alfabetico del nombre");
-club.ordenarNombreAlfabeticamente();
-
-
-
-
+                    club.ordenarNombreAlfabeticamente();
 
                     break;
 
                 case 5:
                     System.out.println("Mostrando deportistas por orden edad");
                     club.ordenarEdad();
-               
 
                     break;
-                case 6:
+                    case 6:
+                    System.out.println("Guardando datos fichero binario");
+                     club.grabarListaDeportistas();
+                    break;
+
+                    case 7:
+                    System.out.println("Recuperado datos fichero binario");
+                    club.recuperarListaDeportistas();
+                    break;
+                case 8:
                     System.out.println("Saliendo del programa...");
                     salir = true;
                     break;
